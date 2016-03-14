@@ -1,3 +1,4 @@
+
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
   ..';.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
@@ -48,7 +49,7 @@ function msg_valid(msg)
   -- Don't process outgoing messages
   if msg.out then
     print('\27[36mNot valid: msg from us\27[39m')
-    return false
+    return true
   end
 
   -- Before bot was started
@@ -74,7 +75,7 @@ function msg_valid(msg)
 
   if msg.from.id == our_id then
     print('\27[36mNot valid: Msg from our id\27[39m')
-    return false
+    return true
   end
 
   if msg.to.type == 'encr_chat' then
@@ -83,8 +84,8 @@ function msg_valid(msg)
   end
 
   if msg.from.id == 777000 then
-  	local login_group_id = 1
-  	--It will send login codes to this chat
+   local login_group_id = 1
+   --It will send login codes to this chat
     send_large_msg('chat#id'..login_group_id, msg.text)
   end
 
@@ -165,7 +166,9 @@ function match_plugin(plugin, plugin_name, msg)
           local result = plugin.run(msg, matches)
           if result then
             send_large_msg(receiver, result)
-          end
+
+.#ѕннв ∂αяк💎, [13.03.16 11:33]
+end
         end
       end
       -- One patterns matches
@@ -218,6 +221,7 @@ function create_config( )
     "owners",
     "arabic_lock",
     "set",
+    "plug",
     "get",
     "broadcast",
     "download_media",
@@ -226,25 +230,19 @@ function create_config( )
     "leave_ban",
     "admin"
     },
-    sudo_users = {140529465,103649648,143723991,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {152321430,146352807,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v2 - Open Source
-An advance Administration bot based on yagop/telegram-bot 
-https://github.com/SEEDTEAM/TeleSeed
-Admins
-@iwals [Founder]
-@imandaneshi [Developer]
-@Rondoozle [Developer]
-@seyedan25 [Manager]
-Special thanks to
-awkward_potato
-Siyanew
-topkecleon
-Vamptacus
-Our channels
-@teleseedch [English]
-@iranseed [persian]
+    about_text = [[OffLiNeTG  v1
+sudo:
+@This_Is_Amir
+@ThisIsDaRk
+Special thanks to:
+HaMeD
+IMAN
+Our channels : 
+@OffLiNeTG_CH [persian]
+OffLiNe Best for you
 ]],
     help_text_realm = [[
 Realm Commands:
@@ -289,10 +287,7 @@ Only sudo users can run this command
 !bc [group_id] [text]
 !bc 123456789 Hello !
 This command will send text to [group_id]
-**U can use both "/" and "!" 
-*Only admins and sudo can add bots in group
-*Only admins and sudo can use kick,ban,unban,newlink,setphoto,setname,lock,unlock,set rules,set about and settings commands
-*Only admins and sudo can use res, setowner, commands
+Channel: @OffLiNeTG_CH
 ]],
     help_text = [[
 Commands list :
@@ -323,7 +318,7 @@ Group rules
 !id
 return group id or user id
 !help
-!lock [member|name|bots|leave]	
+!lock [member|name|bots|leave] 
 Locks [member|name|bots|leaveing] 
 !unlock [member|name|bots|leave]
 Unlocks [member|name|bots|leaving]
@@ -357,13 +352,9 @@ returns user id
 !log
 will return group logs
 !banlist
-will return group ban list
-**U can use both "/" and "!" 
-*Only owner and mods can add bots in group
-*Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
-*Only owner can use res,setowner,promote,demote and log commands
+Channel: @OffLiNeTG_CH
 ]]
-  }
+}
   serialize_to_file(config, './data/config.lua')
   print('saved config into ./data/config.lua')
 end
@@ -380,7 +371,10 @@ function on_chat_update (chat, what)
 
 end
 
-function on_secret_chat_update (schat, what)
+f
+
+.#ѕннв ∂αяк💎, [13.03.16 11:33]
+unction on_secret_chat_update (schat, what)
   --vardump (schat)
 end
 
@@ -410,24 +404,24 @@ end
 -- custom add
 function load_data(filename)
 
-	local f = io.open(filename)
-	if not f then
-		return {}
-	end
-	local s = f:read('*all')
-	f:close()
-	local data = JSON.decode(s)
+ local f = io.open(filename)
+ if not f then
+  return {}
+ end
+ local s = f:read('*all')
+ f:close()
+ local data = JSON.decode(s)
 
-	return data
+ return data
 
 end
 
 function save_data(filename, data)
 
-	local s = JSON.encode(data)
-	local f = io.open(filename, 'w')
-	f:write(s)
-	f:close()
+ local s = JSON.encode(data)
+ local f = io.open(filename, 'w')
+ f:write(s)
+ f:close()
 
 end
 
