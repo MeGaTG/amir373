@@ -221,6 +221,8 @@ function create_config( )
     "owners",
     "arabic_lock",
     "set",
+    "webshot",
+    "p",
     "plug",
     "get",
     "broadcast",
